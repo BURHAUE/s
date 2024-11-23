@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>برنامج إسلامي</title>
+        <style type="text/css">
+            *{
+                margin: 0;padding: 0;
+                color: white;
+            }
+            .main{
+                
+                background: #415E84;
+            }
+            .display{
+                display: flex;
+                flex-flow: column wrap;
+                align-items: center;
+                justify-content: center;
+            }
+            .utilityMain{
+                /*border: solid black 2px;*/
+                border-bottom: solid green;
+                border-left: solid green;
+                border-top: solid blue;
+                border-right: solid blue;
+                width: 90%;
+                text-align: center;
+                height: 80px;
+                box-shadow: 1px 1px 5px black;
+                margin-top: 28px;
+            }
+            .utility{
+                text-shadow: 1px 1px 5px black;
+            }
+            .elzakarMain{
+                margin-top: 50px;
+                border: double 5px green;
+                width: 90%;height: 100px;
+                margin: 50px 0;
+            }
+            .elzakar{
+                font-size: 25px;
+                margin: 10px 0;
+            }
+            .cou{
+                width: 70px;
+                height: 25px;
+                border-radius: 25px;
+            }
+            .control{
+                position: relative;
+                background: red;
+                width: 95%;
+                margin-top: 20px;
+            }
+            .button{
+                background: green;
+                font-size: 50px;
+            }
+            .counter{
+                position: absolute;
+                top: 20%;
+                right: 45%;
+            }
+        </style>
+    </head>
+    <body dir="rtl">
+        <div class="main display">
+            <!--ديف فائدة الذكر-->
+            <div class="utilityMain display">
+                <div class="utility">
+                    من قال سبحان الله مائة مره
+                </div>
+            </div>
+            
+            <!--محتوى الذكر-->
+            <div class="elzakarMain display">
+                <div class="elzakar">سبحان الله</div>
+                <div class="cou display">50</div>
+            </div>
+            
+            <!--معلومات مثل الزرار و الوقت عدد الذكار-->
+            <div class="control">
+                
+                <div class="button">
+                    <div style="float: left; ">></div>
+                    <div><</div>
+                </div>
+                
+                <div class="counter">
+                    <div>1:00</div>
+                    <div>5/2</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

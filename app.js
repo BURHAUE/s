@@ -1,3 +1,4 @@
+$("#content-app").css({"display":'none'});
 let questions = [];
 let madl = 0;
 let hiDate = { "name":'', "madl": [0,0,0,0,100,0,0,0], "material":["quran","islamic","arabic","english","math","physics","chemistry","biology"], "whoTest":[false,false,false,false,false,false,false,false] };

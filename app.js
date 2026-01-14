@@ -1,4 +1,4 @@
-$("#content-app").css({"display":'none'});
+
 let questions = [];
 let madl = 0;
 let hiDate = { "name":'', "madl": [0,0,0,0,100,0,0,0], "material":["quran","islamic","arabic","english","math","physics","chemistry","biology"], "whoTest":[false,false,false,false,false,false,false,false] };
@@ -10,6 +10,7 @@ let dataInternet = get_data("dataInternet",{});
 let studentInput = $("#student-input");
 let idInput = $("#id-input");
 let loginPage = document.getElementById("login-page");
+$("#content-app").css({"display":'none'});
 $("#login-btn").click(function() { const studentName = studentInput.val(); const studentId = idInput.val(); const nameWords = studentName.split(' ').filter(word => word.length > 0); let idf = false; const str = String(studentId).trim(); const regex = /^\d{4}$/; if (!regex.test(str)) { console.error("❌ الخطأ: يجب أن يكون الرقم مكونًا من 4 أرقام فقط"); idf = false } else { console.log("✅ الرقم صحيح"); idf=true } if(nameWords.length === 4 && idf) { localStorage.setItem('studentName', studentName); localStorage.setItem("idSut", studentId); showApp(studentName); showMessage("لقد دخلت بنجاح", "success"); } else { showMessage("عفواً الرجاء التاكد من ادخال الرقم التعريف أو الأسم الصحيح والتزم بالشروط ", "error"); } });
 (function () { const savedName = localStorage.getItem('studentName'); const savedId = localStorage.getItem('idSut'); if(savedName && savedId) { showApp(savedName); } else { loginPage.style.display = 'flex'; } })();
 function showApp(studentName) { loginPage.style.display = 'none'; $("#content-app").css({"display":'block'}); dataStudents.name = studentName; save_data(dataStudents,"dataS"); }

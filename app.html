@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no" />
+        
+<title>تطبيق راسي</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- صفحة تسجيل الدخول -->
+<div id="login-page" style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; background-color:#e0f0ff;">
+    <h2>تسجيل الدخول</h2>
+    <input type="text" id="student-input" placeholder="الاسم الكامل (4 كلمات)" style="padding:10px; width:250px; margin:10px; text-align:center;">
+    <input type="text" id="id-input" placeholder="الرقم التعريفي (4 أرقام)" maxlength="4" style="padding:10px; width:250px; margin:10px; text-align:center;">
+    <button id="login-btn" style="padding:10px 20px; border:none; background:#2196f3; color:white; border-radius:8px; cursor:pointer;">دخول</button>
+    <p id="login-error" style="color:red; margin-top:10px; display:none;">يرجى إدخال اسم صحيح و الرقم التعريفي</p>
+</div>
+
+<!-- رأس التطبيق -->
+<div class="app-header">
+    <div class="header-left">
+        
+       <!-- <button class="menu-btn" title="القائمة">☰</button>
+        -->
+        <button onclick="author()">A</button>
+        
+    </div>
+    <div class="header-title">تطبيق دراسي</div>
+    <div class="header-right" id="j">
+        <button class="internet-btn" onclick="internet()" title="الإنترنت">🌍</button>
+        <button class="profile-btn" onclick="myAccount()" title="الحساب">👤</button>
+        <button onclick="goBack()">⬅️</button>
+    
+    </div>
+</div>
+<!-- محتوى التطبيق -->
+<div id="content-app" style="margin-top: 70px">
+  <div class="page" id="author">
+          <div class="designer-card">
+      <div class="avatar">👨‍💻</div>
+    
+      <h2 class="designer-name">برهان الدين</h2>
+      <p class="designer-role">مصمم ومطور التطبيق</p>
+    
+      <div class="divider"></div>
+    
+      <p class="thanks-title">شكر خاص</p>
+    
+      <p class="thanks-text">
+         🤍<br>
+        مستور الشوكاني
+        <br />
+        عرفات العالق
+      </p>
+    </div>
+  </div>
+  
+  
+  
+    <!-- واجهة الأزرار -->
+ <div id="buts-s" class="page active">
+    <button class="but-subject" id="but1" onclick="openPage('quran')">قرآن كريم</button>
+    <button class="but-subject" id="but2" onclick="openPage('islamic')">إسلامية</button>
+    <button class="but-subject" id="but3" onclick="openPage('arabic')">لغة عربية</button>
+    <button class="but-subject" id="but4" onclick="openPage('english')">لغة انجليزي</button>
+    <button class="but-subject" id="but5" onclick="openPage('math')">رياضيات</button>
+    <button class="but-subject" id="but6" onclick="openPage('physics')">فيزياء</button>
+    <button class="but-subject" id="but7" onclick="openPage('chemistry')">كيمياء</button>
+    <button class="but-subject" id="but8" onclick="openPage('biology')">احياء</button>
+    
+ </div>
+
+<!-- واجهة المحتوى-->
+ <div id="page-content" class="page">
+    <div>
+        <div id="true-false">
+            
+        </div>
+    
+        <div>
+            <div id="select">
+                
+            </div>
+        </div>
+    </div>
+    <div id="endTs">
+        
+    </div>
+ </div>
+
+ <div id="page2"  class="page">
+    <div id="trueAnswer">
+        
+    </div>
+    <div id="selectAnswer">
+        
+    </div>
+    <div  class="fixed-score">
+      <div class="score-circle">
+        <span>99%</span>
+      </div>
+      <div class="score-text">المعدل</div>
+    </div>
+ </div>
+
+
+
+
+
+
+
+  <div id="myAccount" class="page">
+    <div class="student-info">
+        <span class="label">اسم الطالب :</span>
+        <span class="value" id="nameStudent">أحمد محمد علي اليافعي</span>
+    </div>
+    
+    <div class="results-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>المادة</th>
+                    <th>المعدل</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <tr>
+                    <td>قرآن كريم</td>
+                    <td id="elem1" class="high">90%</td>
+                </tr>
+    
+                <tr>
+                    <td>إسلامية</td>
+                    <td id="elem2" class="high">90%</td>
+                </tr>
+    
+                <tr>
+                    <td>لغة عربية</td>
+                    <td id="elem3" class="high">8%</td>
+                </tr>
+    
+                <tr>
+                    <td>لغة إنجليزية</td>
+                    <td id="elem4" class="high">74%</td>
+                </tr>
+    
+                <tr>
+                    <td>رياضيات</td>
+                    <td id="elem5" class="high">6%</td>
+                </tr>
+    
+                <tr>
+                    <td>فيزياء</td>
+                    <td id="elem6" class="high">95%</td>
+                </tr>
+    
+                <tr>
+                    <td>كيمياء</td>
+                    <td id="elem7" class="high">80%</td>
+                </tr>
+    
+                <tr>
+                    <td>أحياء</td>
+                    <td id="elem8" class="high">80%</td>
+                </tr>
+    
+                <tr class="total">
+                    <td>المجموع</td>
+                    <td class="high" id="styleMadl">83.x12%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+  </div>
+
+
+
+ <div id="internet" class="page">
+    <div>
+        <div id="net-indicator"></div>
+        <div id="alertInternet"></div>
+    </div>
+    <div id="qutstandingTemplate">
+        
+    </div>
+    
+   
+ </div>
+<!--        8.   -->
+ <div id="updateQu" style="display: none;">
+    <button style="" class="update-btn" onclick="refreshData()">
+      ⟳
+    </button>
+ </div>
+ <!-- alert -->
+ <div id="app-toast"></div>
+
+ <!-- marquee -->
+    <div class="marquee-container">
+      <div class="marquee-track" id="marqueeTrack">
+        <span id="marqueeText">⭐ تصميم وبرمجة: برهان الدين ⭐</span>
+        
+        <span id="marqueeTextClone">⭐ تصميم وبرمجة: برهان الدين ⭐</span>
+      
+      </div>
+    </div>
+
+
+</div>
+
+
+
+
+<script src="app.js"></script>
+</body>
+</html> 

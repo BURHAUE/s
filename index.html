@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>تطبيق ديناميكي</title>
+<script src="./mact/jquery-3.7.1.min.js"></script>
+
+<style >
+/* دائرة التحميل */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+#loader {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #ddd;
+  border-top: 6px solid #2196f3;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 50px auto;
+  display: none;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+
+</style>
+</head>
+
+<body dir="rtl">
+
+<div>
+    
+    <!-- دائرة التحميل -->
+    <div id="loader"></div>
+    
+    <!-- محتوى التطبيق -->
+    <div id="app"></div>
+    
+    
+
+</div>
+
+<script> 
+/* ===== الإعدادات ===== */
+const SERVER = "https://burhaue.github.io/s/"; // رابط السيرفر أو المجلد المحلي
+const FILES = {
+  html: "app.html",
+  css: "app.css",
+  js: "app.js",
+  version: "version.json",
+  Qu: "Qus.js"
+};
+/*const SERVER2 = "ds/subject/";
+
+const FILES2 ={
+    quran: "quran.js",
+    islam: "islam.js",
+    arabic: "arabic.js",
+    english: "english.js",
+    math: "math.js",
+    physics: "physics.js",
+    chemistry: "chemistry.js",
+    biology: "biology.js"
+}
+
+*/
+/* ===== عناصر ===== */
+const loader = document.getElementById("loader");
+const app = document.getElementById("app");
+
+/* ===== وظائف التحميل ===== */
+function showLoader() { loader.style.display = "block"; }
+function hideLoader() { loader.style.display = "none"; }
+
+async function fetchText(url){
+  const response = await fetch(url);
+  if(!response.ok) throw "خطأ في التحميل: " + url;
+  return await response.text();
+}
+
+/* ===== تحقق التحديث ===== */
+async function updateIfNeeded(){
+  showLoader();
+  try {
+    // محاولة تحميل الإصدار الجديد من السيرفر
+    const remote = await fetch(SERVER + FILES.version).then(r => r.json());
+    const local  = JSON.parse(localStorage.getItem("version") || "{}");
+
+    if(remote.version!== local.version){
+      // تحميل الملفات الجديدة
+      localStorage.setItem("html", await fetchText(SERVER + FILES.html));
+      localStorage.setItem("css",  await fetchText(SERVER + FILES.css));
+      localStorage.setItem("js",   await fetchText(SERVER + FILES.js));
+      localStorage.setItem("version", JSON.stringify(remote));
+      
+      
+      
+      localStorage.setItem("Q", await fetchText(SERVER + FILES.Qu));
+      
+      /*
+      localStorage.setItem("quran", await fetchText(SERVER2 + FILES2.quran));
+      localStorage.setItem("islam",  await fetchText(SERVER2 + FILES2.islam));
+      localStorage.setItem("arabic",   await fetchText(SERVER2 + FILES2.arabic));
+      localStorage.setItem("english", await fetchText(SERVER2 + FILES2.english));
+      localStorage.setItem("math",  await fetchText(SERVER2 + FILES2.math));
+      localStorage.setItem("physics",   await fetchText(SERVER2 + FILES2.physics));
+      localStorage.setItem("chemistry",  await fetchText(SERVER2 + FILES2.chemistry));
+      localStorage.setItem("biology",   await fetchText(SERVER2 + FILES2.biology));
+      */
+    }
+  } catch(e) {
+
+    //console.log(!localStorage.getItem("html"))
+    // إذا لم توجد نسخة محفوظة، نعرض رسالة خطأ
+    if(!localStorage.getItem("html")) {
+      app.innerHTML = "⚠️ يجب الاتصال بالإنترنت أول مرة لتحميل التطبيق";
+      hideLoader();
+      throw e;
+    }
+  }
+  hideLoader();
+}
+
+/* ===== تشغيل التطبيق ===== */
+function runApp(){
+  // إضافة CSS
+  const style = document.createElement("style");
+  style.innerHTML = localStorage.getItem("css") || "";
+  document.head.appendChild(style);
+
+  // إضافة HTML
+  app.innerHTML = localStorage.getItem("html") || "";
+  /*
+  let subs =["quran","islam","arabic","english","math","physics","chemistry","biology"]
+  for(sub of subs){
+      addTextTest(sub)
+  }
+  */
+  
+  //  spject 
+  
+  addTextTest("Q")//    0000001010101010100101000101010100101
+  // إضافة JS
+  const script = document.createElement("script");
+  script.textContent = localStorage.getItem("js") || "";
+  document.body.appendChild(script);
+  
+}
+
+function addTextTest(subject){
+    const script = document.createElement("script");
+    script.textContent = localStorage.getItem(subject) || "";
+    document.body.appendChild(script);
+}
+/* ===== بدء التطبيق ===== */
+(async function(){
+  await updateIfNeeded();
+  runApp();
+})();
+
+</script>
+
+</body>
+</html>

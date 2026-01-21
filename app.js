@@ -2,7 +2,7 @@
 let questions = [];
 let madl = 0;
 let hiDate = { "name":'', "madl": [0,0,0,0,100,0,0,0], "material":["quran","islamic","arabic","english","math","physics","chemistry","biology"], "whoTest":[false,false,false,false,false,false,false,false] };
-let superiorMessage = get_data("supMess","مصمم ومطور التطبيق // برهان الدين العذيبي <br/> شكر خاص / مستور الشوكاني");
+let superiorMessage = get_data("supMess","مصمم ومطور التطبيق / برهان الدين العذيبي <br/> شكر خاص / مستور الشوكاني");
 let dataStudents = get_data("dataS",hiDate);
 let material = null;
 let IDSU = get_data("idSut",0);
